@@ -26,6 +26,11 @@ module Capypage
       define_singleton_method(name) { Elements.new(selector, options.merge(:base_element => base), &block) }
     end
 
+    def chosen_select(value)
+      capybara_element.click
+      base_element.find('li', :text => value).click
+    end
+
     def present?
       base_element.has_selector? selector, capybara_finder_options
     end
